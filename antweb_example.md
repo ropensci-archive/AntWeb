@@ -1,10 +1,6 @@
+# An example for making R calls to the AntWeb API
 
-
-
-
-
-
-```r
+```coffee
 # We'll use the httr library to make web calls
 library(httr) 
 library(rjson) # to parse the json
@@ -16,7 +12,7 @@ library(assertthat) # To make assertions for right inputs
 
 
 
-```r
+```coffee
 example_url <- "http://www.antweb.org/api/?genus=acanthognathus&species=brevicornis"
 # Make a web call
 call <- GET(example_url)
@@ -79,7 +75,7 @@ We can turn this into a full on function that will work for any species name or 
 
 
 
-```r
+```coffee
 aw_specimen <- function(genus = NULL, species = NULL) {
 	# These assertions make sure we are not passing NULLs for the genus
 	# Species name remains optional
@@ -107,7 +103,7 @@ aw_specimen <- function(genus = NULL, species = NULL) {
 Now we can call the function.
 
 
-```r
+```coffee
 data <- aw_specimen(genus = "acanthognathus", species = "brevicornis")
 # By skipping species, we can get all the data from the genus.
 acanthognathus_data <- aw_specimen(genus = "acanthognathus")
@@ -168,7 +164,7 @@ str(data)
 #>  $ datedetermined       : chr  NA "2013-09-12"
 ```
 
-```r
+```coffee
 str(acanthognathus_data)
 ```
 
