@@ -1,0 +1,87 @@
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE
+)
+```
+
+
+```{r, data}
+# We'll use the httr library to make web calls
+library(httr) 
+library(rjson) # to parse the json
+library(plyr) # to convert lists to data.frames
+library(assertthat) # To make assertions for right inputs
+# If you don't have these packages run:
+# install.packages(c("httr", "plyr", "rjson", "assertthat"))
+```
+
+```{r, an_example}
+example_url <- "http://www.antweb.org/api/?genus=acanthognathus&species=brevicornis"
+# Make a web call
+call <- GET(example_url)
+# Retrive the data as text since it's already in JSON
+data <- fromJSON(content(call, "text"))
+# Now coerce the list to a data.frame
+data_df <- ldply(data, function(x) { 
+	df <- data.frame(t(unlist(x)))
+	# There is one field which is a big dump of field names. So I just remove it here
+	df$other <- NULL
+	df
+})
+
+data_df # This is the final outcome from the call that a  user can use downstream.
+```
+
+
+
+We can turn this into a full on function that will work for any species name or genus. Here we input both the genus and/or species as arguments, make sure they are characters. Then make a call, check that we got a valid response, and format the results back to a data.frame that R can understand.
+
+
+```{r}
+aw_specimen <- function(genus = NULL, species = NULL) {
+	# These assertions make sure we are not passing NULLs for the genus
+	# Species name remains optional
+	assert_that(is.character(genus))
+	base_url <- "http://www.antweb.org/api/"
+	# Format the input arguments as a list
+	args <- compact(as.list(c(genus = genus, species = species)))
+	# Pass that to the API
+	results <- GET(base_url, query = args)
+	# This checks to make sure we didn't hit a 404 or other unwanted http response codes
+	stop_for_status(results)
+	# Now get the JSON data
+	data <- fromJSON(content(results, "text"))
+	# Format to a clean data.frame
+	data_df <- ldply(data, function(x){ 
+	df <- data.frame(t(unlist(x)))
+	df$other <- NULL
+	df
+})
+	data_df # Return that out of the functionu
+}
+```
+
+Now we can call the function.
+
+```{r}
+data <- aw_specimen(genus = "acanthognathus", species = "brevicornis")
+# By skipping species, we can get all the data from the genus.
+acanthognathus_data <- aw_specimen(genus = "acanthognathus")
+str(data)
+str(acanthognathus_data)
+```
+
+We can similarly do this for other types of calls to AntWeb.  
+
+As a quick outline, we'll need three other functions to complete the package.
+We can write routines to summarize the results with some metadata (what the call was, when it was made, how many results were retreived), and also a mapping function that can take the georeferenced data and plot it on an interactive map.
+
+To covert this to a full package, we'll also need to write:
+* documentation for the functions
+* Create description file with a list of Imports/Dependencies in addtiion to some metadata
+* A set of unit tests
+* And a vignette on the data (not required but very useful)
+
