@@ -1,0 +1,5 @@
+export(aw_data)
+import(httr)
+importFrom(assertthat,assert_that)
+importFrom(plyr,ldply)
+importFrom(rjson,fromJSON)
