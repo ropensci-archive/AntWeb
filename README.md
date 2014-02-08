@@ -14,7 +14,7 @@ __Resources__
 # If you don't already have the devtools package installed, run
 # install.packages("devtools")
 # unlike most packages, devtools requires additional non-R dependencies depending on your OS. 
-# See → https://github.com/karthik/dlab-advanced-r/blob/master/installation.md#installation
+# See → https://github.com/ropensci/rOpenSci/wiki/Installing-devtools
 library(devtools)
 install_github("ropensci/AntWeb")
 ```
