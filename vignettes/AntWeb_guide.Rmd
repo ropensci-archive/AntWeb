@@ -1,0 +1,37 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{An Introduction to the EML package}
+-->
+
+# Guide to using the AntWeb R interface
+
+![](http://www.antweb.org/images/casent0104669/casent0104669_d_1_high.jpg)
+
+AntWeb is the world's largest online database of images, specimen records, and natural history information on ants. The data repository is maintained by the [California Academy of Sciences](http://www.calacademy.org/). It is community driven and open to contribution from anyone with specimen records, natural history comments, or images. This package provides a programmatic interface to the data. This package is part of the rOpenSci suite of tools.
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = TRUE,
+  fig.width=12, 
+  fig.height=8, 
+  fig.path='Figs/'
+  )
+```
+
+## Obtaining specimen data  
+
+### Searching the database  
+### Retrieving records by specimen id  
+
+
+## Searching records by location  
+
+## Searching images  
+
+
+
+
+
+
