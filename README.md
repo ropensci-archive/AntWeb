@@ -19,11 +19,11 @@ install_github("ropensci/AntWeb")
 
 | Function name | Description | Example | 
 | ------------- | ----------- | ------- |
-| 1. `aw_data`  | Search for data by taxonomic level or full species name     |    `aw_data(scientific_name = "acanthognathus brevicornis")` |
-| 2. `aw_unique` | Obtain a list of unique levels by various taxonomic ranks    |  `aw_unique(rank = "subfamily")` |
-| 3. `aw_photos` | Search photos by type or time since added.     |    ` aw_photos(since = 5)` |
-| 4. `aw_coords` | Search for specimens by location and radius     |    `aw_coords(coord = "37.76,-122.45", r = 2)` |
-| 5. `aw_code` | Search for a specimen by record number   |  `aw_code(code = "casent0104669")` |
+| `aw_data`  | Search for data by taxonomic level or full species name     |    `aw_data(scientific_name = "acanthognathus brevicornis")` |
+| `aw_unique` | Obtain a list of unique levels by various taxonomic ranks    |  `aw_unique(rank = "subfamily")` |
+| `aw_photos` | Search photos by type or time since added.     |    ` aw_photos(since = 5)` |
+| `aw_coords` | Search for specimens by location and radius     |    `aw_coords(coord = "37.76,-122.45", r = 2)` |
+| `aw_code` | Search for a specimen by record number   |  `aw_code(code = "casent0104669")` |
 
 
 ## Citation
