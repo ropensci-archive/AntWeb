@@ -1,8 +1,8 @@
-\name{aw_photos}
-\alias{aw_photos}
-\title{aw_photos}
+\name{aw_images}
+\alias{aw_images}
+\title{aw_images}
 \usage{
-aw_photos(since = NULL, type = NULL)
+aw_images(since = NULL, type = NULL)
 }
 \arguments{
   \item{since}{number of days in the past to query}
@@ -15,12 +15,12 @@ aw_photos(since = NULL, type = NULL)
 data.frame
 }
 \description{
-Download ant photos based on time elapsed and/or type.
+Download ant images based on time elapsed and/or type.
 }
 \examples{
 \dontrun{
-z <- aw_photos(since = 5)
-z1 <- aw_photos(since = 5, type = "d")
+z <- aw_images(since = 5)
+z1 <- aw_images(since = 5, type = "d")
 }
 }
 

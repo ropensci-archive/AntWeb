@@ -1,16 +1,16 @@
 
-#' aw_photos
+#' aw_images
 #'
-#' Download ant photos based on time elapsed and/or type.
+#' Download ant images based on time elapsed and/or type.
 #' @param since number of days in the past to query
 #' @param  type h for head, d for dorsal, p for profile, and l for label. If a type is not specified, all images are retrieved.
 #' @export
 #' @return data.frame
 #' @examples \dontrun{
-#' z <- aw_photos(since = 5)
-#' z1 <- aw_photos(since = 5, type = "d")
+#' z <- aw_images(since = 5)
+#' z1 <- aw_images(since = 5, type = "d")
 #'}
-aw_photos <- function(since = NULL, type = NULL) {
+aw_images <- function(since = NULL, type = NULL) {
 	img <- "true"
 	base_url <- "http://www.antweb.org/api/"
 	args <- z_compact(as.list(c(since = since, img = img, type = type)))
