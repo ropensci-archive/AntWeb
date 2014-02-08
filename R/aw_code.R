@@ -25,6 +25,7 @@ aw_code <- function(code = NULL) {
 	image_data <- lapply(images[[1]][[2]], function(x) { data.frame(t(unlist(x)))})
 	image_data_df <- rbind_all(image_data)
 	image_data_df$location <- names(image_data)
+	names(image_data_df)[1:4] <- c("high", "med", "low", "thumbnail")
 	# Combine the metadata and photo data into a list
 	list(metadata = metadata_df, image_data = image_data_df)
 }
