@@ -35,7 +35,6 @@ aw_images <- function(since = NULL, type = NULL) {
 				img_data
 			})
 			photo_data_df <- do.call(rbind, photo_data)
-			# photo_data_df$collection_date <- collection_date
 	})
 
 final_df <- do.call(rbind, data_list)

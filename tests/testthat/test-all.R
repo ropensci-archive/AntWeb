@@ -12,6 +12,9 @@ context("Data by specimen id works correctly")
 test_that("Specimen collections work correctly", {
 	data_by_code <- aw_code(code = "casent0104669")
 	expect_is(data_by_code, "list")
+	genus_list <- aw_unique(rank = "genus")
+	expect_is(genus_list, "data.frame")
+	expect_equal(ncol(genus_list), 1)
 }) 
 
 
@@ -24,8 +27,8 @@ expect_error(aw_coords())
 context("Photos")
 
 test_that("Photos work correctly", {
-	z <- aw_photos(since = 5)
-	z1 <- aw_photos(since = 5, type = "d")
+	z <- aw_images(since = 5)
+	z1 <- aw_images(since = 5, type = "d")
 	expect_is(z, "data.frame")
 	expect_is(z1, "data.frame")
 	expect_equal(unique(z1$type), "d")
