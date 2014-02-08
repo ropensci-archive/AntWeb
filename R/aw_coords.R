@@ -3,8 +3,8 @@
 #' aw_coords
 #'
 #' Retrieve AntWeb data by location. A radius argument can be supplied as a search radius around a point on th emap.
-#' @param  coord Latitude and Longitude. Should be supplied as \code{lat,long}. Example: 37.76,-122.45
-#' @param  r A radius in kilometers. For 2 km add \code{r = 2.}
+#' @param coord Latitude and Longitude. Should be supplied as \code{lat,long}. Example: \code{37.76,-122.45}
+#' @param r A radius in kilometers. For 2 km add \code{r = 2}
 #' @export
 #' @return \code{\link{aw_data}}
 #' @examples \dontrun{

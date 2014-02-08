@@ -5,7 +5,7 @@
 aw_code(code = NULL)
 }
 \arguments{
-  \item{code}{A unique id in the antweb database
+  \item{code}{A unique id in the AntWeb database
   identifying a particular specimen}
 }
 \value{

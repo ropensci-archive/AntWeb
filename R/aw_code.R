@@ -2,7 +2,7 @@
 #' aw_code
 #'
 #' Retrieve data by specimen id
-#' @param code A unique id in the antweb database identifying a particular specimen
+#' @param code A unique id in the AntWeb database identifying a particular specimen
 #' @export
 #' @seealso \code{\link{aw_data}}
 #' @return list
@@ -11,8 +11,7 @@
 #'}
 aw_code <- function(code = NULL) {
 
-	assert_that(!is.null(code))
-	assert_that(is.character(code))
+	assert_that(!is.null(code) & is.character(code))
 
 	base_url <- "http://www.antweb.org/api/"
 	args <- z_compact(as.list(c(code = code)))
