@@ -5,23 +5,26 @@
 #' @param genus An ant genus name
 #' @param  species a species name
 #' @param  scientific_name An easier way to pass the Genus and species name together, especially when the data are derived from other packages.
+#' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
 #' @export
 #' @keywords data download
-#' @importFrom dplyr rbind_all
+#' @importFrom dplyr rbind_all filter
 #' @importFrom rjson fromJSON
 #' @importFrom assertthat assert_that
 #' @import httr
 #' @return data.frame
-#' @examples \dontrun{
+#' @examples  \dontrun{
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 #' data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 #' data_genus_only <- aw_data(genus = "acanthognathus")
+#' leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #'}
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE) {
 
 
 	assert_that(!is.null(scientific_name) | !is.null(genus))
-
+	meta.decimal_latitude <- NA
+	meta.decimal_longitude <- NA
 	if(!is.null(scientific_name)) {
 		genus <- strsplit(scientific_name, " ")[[1]][1]
 		species <- strsplit(scientific_name, " ")[[1]][2]
@@ -36,7 +39,12 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL) {
 	df$other <- NULL
 	df
 })
-	rbind_all(data_df)
+	final_df <- rbind_all(data_df)
+	if(!georeferenced) {
+		final_df
+	} else {
+		dplyr::filter(final_df, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
+	}
 }	
 
 
@@ -50,7 +58,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL) {
 #' @importFrom dplyr rbind_all
 #' @seealso \code{\link{aw_data}}
 #' @return data.frame
-#' @examples \dontrun{
+#' @examples  \dontrun{
 #' subfamily_list <- aw_unique(rank = "subfamily")
 #' genus_list <- aw_unique(rank = "genus")
 #' species_list <- aw_unique(rank = "species")
@@ -63,8 +71,6 @@ aw_unique <- function(rank = NULL, name = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	dplyr::rbind_all(data)
+	rbind_all(data)
 }
-
-# [TODO]: Add a since arugument.
 
