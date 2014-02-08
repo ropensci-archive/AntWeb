@@ -1,5 +1,6 @@
 Package: AntWeb
 Type: Package
+Date: 2014-02-07
 Title: programmatic interface to the AntWeb
 Description: A complete programmatic interface to the AntWeb database from the
     California Academy of Sciences.
@@ -13,7 +14,7 @@ BugReports: https://github.com/ropensci/AntWeb/issues
 LazyData: true
 VignetteBuilder: knitr
 Imports:
-    plyr,
     rjson,
+    dplyr,
     assertthat,
     httr
