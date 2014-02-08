@@ -25,7 +25,7 @@ install_github("ropensci/AntWeb")
 | ------------- | ----------- | ------- |
 | `aw_data`  | Search for data by taxonomic level or full species name     |    `aw_data(scientific_name = "acanthognathus brevicornis")` |
 | `aw_unique` | Obtain a list of unique levels by various taxonomic ranks    | `aw_unique(rank = "subfamily")` <br>`genus_list <- aw_unique(rank = "genus")`<br>`aw_unique(rank = "species")` |
-| `aw_photos` | Search photos by type or time since added.     |    ` aw_photos(since = 5)`<br> `aw_photos(since = 5, type = "h")` |
+| `aw_images` | Search photos by type or time since added.     |    ` aw_images(since = 5)`<br> `aw_images(since = 5, type = "h")` |
 | `aw_coords` | Search for specimens by location and radius     |    `aw_coords(coord = "37.76,-122.45", r = 5)` |
 | `aw_code` | Search for a specimen by record number   |  `aw_code(code = "casent0104669")` |
 
