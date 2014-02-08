@@ -1,10 +1,11 @@
 # AntWeb
+![](https://travis-ci.org/ropensci/antweb.png?branch=master)
 
 [__AntWeb__](http://www.antweb.org/) is a repository of ant specimen records maintained by the California Academy of Sciences. From the website's description:
 > AntWeb is the world's largest online database of images, specimen records, and natural history information on ants. It is community driven and open to contribution from anyone with specimen records, natural history comments, or images.
 
 __Resources__  
-* AntWeb   
+* [AntWeb](http://www.antweb.org/)   
 * [AntWeb API](http://www.antweb.org/api/)
 
 ## Installing the package
@@ -14,8 +15,37 @@ library(devtools)
 install_github("ropensci/AntWeb")
 ```
 
+## Quick usage guide
+
+| Function name | Description | Example | 
+| ------------- | ----------- | ------- |
+| 1. `aw_data`  | Search for data by taxonomic level or full species name     |    `aw_data(scientific_name = "acanthognathus brevicornis")` |
+| 2. `aw_unique` | Obtain a list of unique levels by various taxonomic ranks    |  `aw_unique(rank = "subfamily")` |
+| 3. `aw_photos` | Search photos by type or time since added.     |    ` aw_photos(since = 5)` |
+| 4. `aw_coords` | Search for specimens by location and radius     |    `aw_coords(coord = "37.76,-122.45", r = 2)` |
+| 5. `aw_code` | Search for a specimen by record number   |  `aw_code(code = "casent0104669")` |
+
+
 ## Citation
 
+```coffee
+To cite package ‘AntWeb’ in publications use:
+
+  'Karthik Ram' (2014). AntWeb: programmatic interface
+  to the AntWeb. R package version 0.1.
+  https://github.com/ropensci/AntWeb
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {AntWeb: programmatic interface to the AntWeb},
+    author = {'Karthik Ram'},
+    year = {2014},
+    note = {R package version 0.1},
+    url = {https://github.com/ropensci/AntWeb},
+  }
+
+```
 ## Questions, bugs, and suggestions
 
 Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb/issues/new) or send in a pull request.
