@@ -15,6 +15,10 @@ test_that("Specimen collections work correctly", {
 	genus_list <- aw_unique(rank = "genus")
 	expect_is(genus_list, "data.frame")
 	expect_equal(ncol(genus_list), 1)
+	fail <- aw_data(scientific_name = "auberti levithorax")
+	expect_is(fail, "NULL")
+	fake_code <- aw_code(code = "casent0104669asdsa")
+	expect_is(fake_code, "NULL")
 }) 
 
 
