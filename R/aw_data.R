@@ -18,6 +18,7 @@
 #' data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 #' data_genus_only <- aw_data(genus = "acanthognathus")
 #' leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
+#' fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 #'}
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE) {
 
@@ -34,17 +35,23 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
+	if(identical(data, "No records were found.")) {
+		NULL 
+	} else {
 	data_df <- lapply(data, function(x){ 
 	df <- data.frame(t(unlist(x)))
 	df$other <- NULL
 	df
 })
 	final_df <- rbind_all(data_df)
+	final_df$meta.other <- NULL
 	if(!georeferenced) {
 		final_df
 	} else {
 		dplyr::filter(final_df, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
 	}
+
+}
 }	
 
 
@@ -55,7 +62,6 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #' @param rank  A taxonomic rank. Allowed values are  \code{subfamily}, \code{genus} or \code{species}
 #' @param  name Optional. If left blank, the query will return a list of all unique names inside the supplied rank.
 #' @export
-#' @importFrom dplyr rbind_all
 #' @seealso \code{\link{aw_data}}
 #' @return data.frame
 #' @examples  \dontrun{
@@ -71,6 +77,6 @@ aw_unique <- function(rank = NULL, name = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	rbind_all(data)
+	do.call(rbind.data.frame,data)
 }
 
