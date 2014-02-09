@@ -57,3 +57,7 @@ Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb
 ---
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ropensci/antweb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
