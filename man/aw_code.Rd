@@ -15,9 +15,7 @@ list
 Retrieve data by specimen id
 }
 \examples{
-\dontrun{
 data_by_code <- aw_code(code = "casent0104669")
-}
 }
 \seealso{
 \code{\link{aw_data}}

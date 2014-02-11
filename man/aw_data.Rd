@@ -27,13 +27,11 @@ This function allows a user to query the AntWeb database by
 any taxonomic rank or full species name.
 }
 \examples{
-\dontrun{
 data <- aw_data(genus = "acanthognathus", species = "brevicornis")
-data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
-data_genus_only <- aw_data(genus = "acanthognathus")
-leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
-fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-}
+# data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
+# data_genus_only <- aw_data(genus = "acanthognathus")
+# leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
+# fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 }
 \keyword{data}
 \keyword{download}

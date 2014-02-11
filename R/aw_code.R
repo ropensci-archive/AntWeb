@@ -5,9 +5,8 @@
 #' @export
 #' @seealso \code{\link{aw_data}}
 #' @return list
-#' @examples \dontrun{
+#' @examples 
 #' data_by_code <- aw_code(code = "casent0104669") 
-#'}
 aw_code <- function(code = NULL) {
 
 	assert_that(!is.null(code) & is.character(code))
@@ -24,7 +23,7 @@ aw_code <- function(code = NULL) {
 	metadata_df <- data.frame(t(unlist(data[[1]])))
 	images <- data[[2]]
 	image_data <- lapply(images[[1]][[2]], function(x) { data.frame(t(unlist(x)))})
-	image_data_df <- rbind_all(image_data)
+	image_data_df <- do.call(rbind, image_data)
 	image_data_df$location <- names(image_data)
 	names(image_data_df)[1:4] <- c("high", "med", "low", "thumbnail")
 	# Combine the metadata and photo data into a list

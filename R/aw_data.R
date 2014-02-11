@@ -8,18 +8,17 @@
 #' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
 #' @export
 #' @keywords data download
-#' @importFrom dplyr rbind_all filter
+#' @importFrom dplyr filter
 #' @importFrom rjson fromJSON
 #' @importFrom assertthat assert_that
 #' @import httr
 #' @return data.frame
-#' @examples  \dontrun{
+#' @examples   
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
-#' data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
-#' data_genus_only <- aw_data(genus = "acanthognathus")
-#' leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
-#' fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-#'}
+#' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
+#' # data_genus_only <- aw_data(genus = "acanthognathus")
+#' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
+#' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE) {
 
 
@@ -43,7 +42,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	df$other <- NULL
 	df
 })
-	final_df <- rbind_all(data_df)
+	final_df <- data.frame(do.call(rbind.fill, data_df))
 	final_df$meta.other <- NULL
 	if(!georeferenced) {
 		final_df
@@ -77,6 +76,6 @@ aw_unique <- function(rank = NULL, name = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	rbind_all(data)
+	data.frame(do.call(rbind, data))
 }
 

@@ -19,8 +19,6 @@ Retrieve AntWeb data by location. A radius argument can be
 supplied as a search radius around a point on th emap.
 }
 \examples{
-\dontrun{
 data_by_loc <- aw_coords(coord = "37.76,-122.45", r = 2)
-}
 }
 
