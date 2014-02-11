@@ -77,6 +77,6 @@ aw_unique <- function(rank = NULL, name = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	do.call(rbind.data.frame,data)
+	rbind_all(data)
 }
 

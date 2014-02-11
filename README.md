@@ -28,6 +28,7 @@ install_github("ropensci/AntWeb")
 | `aw_images` | Search photos by type or time since added.     |    ` aw_images(since = 5)`<br> `aw_images(since = 5, type = "h")` |
 | `aw_coords` | Search for specimens by location and radius     |    `aw_coords(coord = "37.76,-122.45", r = 5)` |
 | `aw_code` | Search for a specimen by record number   |  `aw_code(code = "casent0104669")` |
+| `aw_map` | Map georeferenced data | `acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)`<br>`aw_map(acanthognathus_df)` |
 
 
 ## Citation

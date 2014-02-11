@@ -17,4 +17,5 @@ Imports:
     plyr,
     dplyr,
     assertthat,
-    httr
+    httr,
+    leafletR (>= 0.1-1)
