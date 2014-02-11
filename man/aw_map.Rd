@@ -2,7 +2,7 @@
 \alias{aw_map}
 \title{LeafletJS Map}
 \usage{
-aw_map(aw_obj, dest = tempdir(), title = "Ecoengine species map",
+aw_map(aw_obj, dest = tempdir(), title = "AntWeb species map",
   incl.data = TRUE)
 }
 \arguments{
