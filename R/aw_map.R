@@ -14,7 +14,7 @@
 #'  acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
 #'  aw_map(acanthognathus_df)
 #'}
-aw_map <- function(aw_obj, dest = tempdir(), title = "Ecoengine species map", incl.data = TRUE) {
+aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.data = TRUE) {
 	assert_that(identical(class(aw_obj), "data.frame"))
 	aw_obj <- dplyr::filter(aw_obj, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
 	assert_that(nrow(aw_obj) > 1)
