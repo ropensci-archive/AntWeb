@@ -46,7 +46,7 @@ A BibTeX entry for LaTeX users is
     title = {AntWeb: programmatic interface to the AntWeb},
     author = {'Karthik Ram'},
     year = {2014},
-    note = {R package version 0.1},
+    note = {R package version 0.4},
     url = {https://github.com/ropensci/AntWeb},
   }
 
