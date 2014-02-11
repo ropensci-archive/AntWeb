@@ -29,15 +29,16 @@ aw_images <- function(since = NULL, type = NULL) {
 					imgg[[i]]$type <- unlist(names(il[i]))
 				}
 
-				img_data <- do.call(rbind, imgg)
+				img_data <- rbind_all(imgg)
 				img_data$collection_date <- collection_date
 				names(img_data) <- c("high", "med", "low", "thumbnail", "type", "collection_date")
 				img_data
 			})
-			photo_data_df <- do.call(rbind, photo_data)
+			photo_data_df <- rbind_all(photo_data)
+
 	})
 
-final_df <- do.call(rbind, data_list)
+  final_df <- rbind_all(data_list)
 rownames(final_df) <- NULL
 final_df
 
