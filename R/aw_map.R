@@ -5,7 +5,6 @@
 #' @param aw_obj Result from a search on AntWeb
 #' @param  dest Location where the html file and geojson file should be stored. Default is the temp directory
 #' @param  title Title of the map.
-#' @importFrom dplyr filter
 #' @param  incl.data Default is \code{TRUE}. Writes geoJSON data into the html file to get around security restrictions in browsers like Google Chrome. Set to \code{FALSE} to read from a separate local geoJSON file.
 #' @export
 #' @keywords map
@@ -16,7 +15,8 @@
 #'}
 aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.data = TRUE) {
 	assert_that(identical(class(aw_obj), "data.frame"))
-	aw_obj <- dplyr::filter(aw_obj, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
+	# aw_obj <- dplyr::filter(aw_obj, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
+	aw_obj <- subset(aw_obj, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
 	assert_that(nrow(aw_obj) > 1)
 	meta.decimal_latitude <- NULL
 	meta.decimal_longitude <- NULL

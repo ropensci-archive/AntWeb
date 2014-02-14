@@ -8,7 +8,6 @@
 #' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
 #' @export
 #' @keywords data download
-#' @importFrom dplyr filter
 #' @importFrom rjson fromJSON
 #' @importFrom assertthat assert_that
 #' @import httr
@@ -47,7 +46,8 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	if(!georeferenced) {
 		final_df
 	} else {
-		dplyr::filter(final_df, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
+		# dplyr::filter(final_df, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
+		subset(final_df, !is.na(meta.decimal_latitude) & !is.na(meta.decimal_longitude))
 	}
 
 }
