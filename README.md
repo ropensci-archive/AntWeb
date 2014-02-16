@@ -10,6 +10,14 @@ __Resources__
 
 ## Installing the package
 
+__Stable version__  
+
+```coffee
+install.packages("AntWeb", dependencies = TRUE)
+```
+
+__Development version__  
+
 ```coffee
 # If you don't already have the devtools package installed, run
 # install.packages("devtools")
