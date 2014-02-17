@@ -28,6 +28,7 @@ any taxonomic rank or full species name.
 }
 \examples{
 data <- aw_data(genus = "acanthognathus", species = "brevicornis")
+data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 # data_genus_only <- aw_data(genus = "acanthognathus")
 # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
