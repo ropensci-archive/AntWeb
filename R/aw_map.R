@@ -15,12 +15,12 @@
 #'}
 aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.data = TRUE) {
 	assert_that(identical(class(aw_obj), "data.frame"))
-	# aw_obj <- dplyr::filter(aw_obj, !is.na(meta.decimal_latitude), !is.na(meta.decimal_longitude))
-	aw_obj <- subset(aw_obj, !is.na(meta.decimal_latitude) & !is.na(meta.decimal_longitude))
+	# aw_obj <- dplyr::filter(aw_obj, !is.na(decimal_latitude), !is.na(decimal_longitude))
+	aw_obj <- subset(aw_obj, !is.na(decimal_latitude) & !is.na(decimal_longitude))
 	# THERE IS A PROBLEM HERE
 	assert_that(nrow(aw_obj) > 1)
-	meta.decimal_latitude <- NULL
-	meta.decimal_longitude <- NULL
+	decimal_latitude <- NULL
+	decimal_longitude <- NULL
 
 	dest <- ifelse(is.null(dest), tempdir(), dest)
 	aw_obj$scientific_name <- paste0(aw_obj$meta.genus, " ", aw_obj$meta.species)
