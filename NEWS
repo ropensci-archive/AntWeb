@@ -1,3 +1,10 @@
+
+Version: 0.5
+=============
+* Bug fixes related to lat/long being renamed.
+
+
 Version: 0.4
 =============
 * Initial CRAN release
+

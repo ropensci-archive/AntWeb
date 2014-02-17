@@ -2,7 +2,11 @@
 context("Ant Data")
 
 test_that("We are able to retreive all ant data correctly", {
+	# This will also test that georeferencing works correctly
 	ad <- aw_data(genus = "acanthognathus", species = "brevicornis")
+	ad2 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
+	expect_true((nrow(ad) - nrow(ad2)) > 0)
+
 	expect_is(ad, "data.frame")
 	expect_error(aw_data())
 })
