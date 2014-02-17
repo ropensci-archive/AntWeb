@@ -11,6 +11,7 @@ aw_code <- function(code = NULL) {
 
 	assert_that(!is.null(code) & is.character(code))
 
+	code <- tolower(code)
 	base_url <- "http://www.antweb.org/api/"
 	args <- z_compact(as.list(c(code = code)))
 	results <- GET(base_url, query = args)

@@ -34,7 +34,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	if(identical(data, "No records were found.")) {
+	if(identical(data, "No records found.") | identical(data, "No records were found.")) {
 		NULL 
 	} else {
 	data_df <- lapply(data, function(x){ 
