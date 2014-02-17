@@ -23,8 +23,8 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 
 
 	assert_that(!is.null(scientific_name) | !is.null(genus))
-	meta.decimal_latitude <- NA
-	meta.decimal_longitude <- NA
+	decimal_latitude <- NA
+	decimal_longitude <- NA
 	if(!is.null(scientific_name)) {
 		genus <- strsplit(scientific_name, " ")[[1]][1]
 		species <- strsplit(scientific_name, " ")[[1]][2]
