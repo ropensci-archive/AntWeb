@@ -41,3 +41,16 @@ test_that("Photos work correctly", {
 	expect_is(z1, "data.frame")
 	expect_equal(unique(z1$type), "d")
 })
+
+
+
+context("Testing the Leaflet maps")
+
+test_that("Leaflet maps and geoJSON work", {
+ant_data <- acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
+aw_map(ant_data, dest = ".")
+expect_true(file.exists("AntWeb_species_map"))
+expect_true(file.exists("temp.geojson"))
+unlink("temp.geojson")
+unlink("AntWeb_species_map/", recursive = TRUE)
+})
