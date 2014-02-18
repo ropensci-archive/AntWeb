@@ -14,18 +14,21 @@
 #'  aw_map(acanthognathus_df)
 #'}
 aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.data = TRUE) {
-	assert_that(identical(class(aw_obj), "data.frame"))
-	# aw_obj <- dplyr::filter(aw_obj, !is.na(decimal_latitude), !is.na(decimal_longitude))
-	aw_obj <- subset(aw_obj, !is.na(decimal_latitude) & !is.na(decimal_longitude))
-	# THERE IS A PROBLEM HERE
-	assert_that(nrow(aw_obj) > 1)
 	decimal_latitude <- NULL
 	decimal_longitude <- NULL
+
+	assert_that(identical(class(aw_obj), "data.frame"))
+	aw_obj <- subset(aw_obj, !is.na(decimal_latitude) & !is.na(decimal_longitude))
+	assert_that(nrow(aw_obj) > 1)
+
 
 	dest <- ifelse(is.null(dest), tempdir(), dest)
 	aw_obj$scientific_name <- paste0(aw_obj$meta.genus, " ", aw_obj$meta.species)
 	species_data <- aw_obj
-	ee_geo <- toGeoJSON(data = species_data, name = "temp", dest = dest, lat.lon=c(18, 19))	
+	lat_location <- which(names(acd) == "decimal_latitude")
+	lon_location <- which(names(acd) == "decimal_longitude")
+
+	ee_geo <- toGeoJSON(data = species_data, name = "temp", dest = dest, lat.lon = c(lat_location, lon_location))	
 	num_species <- length(unique(species_data$scientific_name))
 	cols <- c("#8D5C00", "#2F5CD7","#E91974", "#3CB619","#7EAFCC",
 "#4F2755","#F5450E","#264C44","#3EA262","#FA43C9","#6E8604","#631D0E","#EE8099","#E5B25A",
