@@ -29,7 +29,7 @@ aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.
 	lon_location <- which(names(species_data) == "decimal_longitude")
 	num_species <- length(unique(species_data$scientific_name))
 		if(num_species > 30) {
-			stop("Map cannot accommodate more than 30 species. Please map a smaller subset")
+			stop("Map cannot accommodate more than 30 species. Please choose a smaller subset of data.")
 	}
 
 	ee_geo <- toGeoJSON(data = species_data, name = "temp", dest = dest, lat.lon = c(lat_location, lon_location))	
