@@ -25,8 +25,8 @@ aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.
 	dest <- ifelse(is.null(dest), tempdir(), dest)
 	aw_obj$scientific_name <- paste0(aw_obj$meta.genus, " ", aw_obj$meta.species)
 	species_data <- aw_obj
-	lat_location <- which(names(acd) == "decimal_latitude")
-	lon_location <- which(names(acd) == "decimal_longitude")
+	lat_location <- which(names(species_data) == "decimal_latitude")
+	lon_location <- which(names(species_data) == "decimal_longitude")
 
 	ee_geo <- toGeoJSON(data = species_data, name = "temp", dest = dest, lat.lon = c(lat_location, lon_location))	
 	num_species <- length(unique(species_data$scientific_name))
