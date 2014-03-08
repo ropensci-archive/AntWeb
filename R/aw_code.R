@@ -3,7 +3,7 @@
 #' Retrieve data by specimen id
 #' @param occurrenceid A unique id in the AntWeb database identifying a particular specimen
 #' @export
-#' @seealso \occurrenceid{\link{aw_data}}
+#' @seealso \code{\link{aw_data}}
 #' @return list
 #' @examples 
 #' data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
