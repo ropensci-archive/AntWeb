@@ -7,6 +7,8 @@
 #' @param  scientific_name An easier way to pass the Genus and species name together, especially when the data are derived from other packages.
 #' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
 #' @param  bbox A lat long bounding box. Format is \code{lat,long,lat,long}
+#' @param  type A holotype
+#' @param  habitat A fuzzy search by any habitat
 #' @param  min_date A lower date bound in the format \code{yyyy-mm-dd}
 #' @param  max_date An upper date bound in the format \code{yyyy-mm-dd}
 #' @param  limit A numeric value to limit number of records
@@ -25,7 +27,7 @@
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, type = type, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
 
 
 	assert_that(!is.null(scientific_name) | !is.null(genus))
@@ -36,7 +38,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 		species <- strsplit(scientific_name, " ")[[1]][2]
 	}
 	base_url <- "http://www.antweb.org/api/v2/"
-	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_date = min_date, max_date = max_date, limit = limit, offset = offset)))
+	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
