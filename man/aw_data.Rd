@@ -3,8 +3,8 @@
 \title{Retrieve data from the AntWeb}
 \usage{
 aw_data(genus = NULL, species = NULL, scientific_name = NULL,
-  georeferenced = FALSE, min_date = NULL, max_date = NULL, bbox = NULL,
-  limit = NULL, offset = NULL)
+  georeferenced = FALSE, type = NULL, habitat = NULL, min_date = NULL,
+  max_date = NULL, bbox = NULL, limit = NULL, offset = NULL)
 }
 \arguments{
   \item{genus}{An ant genus name}
@@ -22,6 +22,10 @@ aw_data(genus = NULL, species = NULL, scientific_name = NULL,
 
   \item{bbox}{A lat long bounding box. Format is
   \code{lat,long,lat,long}}
+
+  \item{type}{A holotype}
+
+  \item{habitat}{A fuzzy search by any habitat}
 
   \item{min_date}{A lower date bound in the format
   \code{yyyy-mm-dd}}
@@ -45,6 +49,7 @@ any taxonomic rank or full species name.
 data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
+# sandstone <- aw_data(habitat = "sandstone", limit = 5)
 # data_genus_only <- aw_data(genus = "acanthognathus", limit = 5)
 # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
