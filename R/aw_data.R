@@ -39,7 +39,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 		species <- strsplit(scientific_name, " ")[[1]][2]
 	}
 	base_url <- "http://www.antweb.org/api/v2/"
-	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset)))
+	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset, georeferenced = georeferenced)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
