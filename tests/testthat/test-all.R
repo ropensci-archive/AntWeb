@@ -14,14 +14,14 @@ test_that("We are able to retreive all ant data correctly", {
 context("Data by specimen id works correctly")
 
 test_that("Specimen collections work correctly", {
-	data_by_code <- aw_code(code = "casent0104669")
+	data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
 	expect_is(data_by_code, "list")
 	genus_list <- aw_unique(rank = "genus")
 	expect_is(genus_list, "data.frame")
 	expect_equal(ncol(genus_list), 1)
 	fail <- aw_data(scientific_name = "auberti levithorax")
 	expect_is(fail, "NULL")
-	fake_code <- aw_code(code = "casent0104669asdsa")
+	fake_code <- aw_code(occurrenceid = "antweb:inb0003695883sdfsdfds") 
 	expect_is(fake_code, "NULL")
 }) 
 
