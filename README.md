@@ -7,6 +7,7 @@
 __Resources__  
 * [AntWeb](http://www.antweb.org/)   
 * [AntWeb API](http://www.antweb.org/api/)
+* [API version 2](http://www.antweb.org/api/v2/)
 
 ## Installing the package
 
