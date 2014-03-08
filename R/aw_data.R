@@ -23,11 +23,12 @@
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 #' data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 #' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
+#' # sandstone <- aw_data(habitat = "sandstone", limit = 5)
 #' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 5)
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, type = type, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
 
 
 	assert_that(!is.null(scientific_name) | !is.null(genus))
@@ -61,6 +62,10 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	final_df
 }
 }	
+# [TODO]
+# This fails
+# sandstone <- aw_data(genus = "megalomyrmex", habitat = "sandstone", limit = 5)
+# Do I allow search without genus or scientific name?
 
 
 
