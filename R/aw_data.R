@@ -6,6 +6,11 @@
 #' @param  species a species name
 #' @param  scientific_name An easier way to pass the Genus and species name together, especially when the data are derived from other packages.
 #' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
+#' @param  bbox A lat long bounding box. Format is \code{lat,long,lat,long}
+#' @param  min_date A lower date bound in the format \code{yyyy-mm-dd}
+#' @param  max_date An upper date bound in the format \code{yyyy-mm-dd}
+#' @param  limit A numeric value to limit number of records
+#' @param  offset An offset best used with limit as a way to paginate records
 #' @export
 #' @keywords data download
 #' @importFrom rjson fromJSON
@@ -16,10 +21,11 @@
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 #' data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 #' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
-#' # data_genus_only <- aw_data(genus = "acanthognathus")
+#' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 5)
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
+#' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
 
 
 	assert_that(!is.null(scientific_name) | !is.null(genus))
@@ -29,30 +35,28 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 		genus <- strsplit(scientific_name, " ")[[1]][1]
 		species <- strsplit(scientific_name, " ")[[1]][2]
 	}
-	base_url <- "http://www.antweb.org/api/"
-	args <- z_compact(as.list(c(genus = genus, species = species)))
+	base_url <- "http://www.antweb.org/api/v2/"
+	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_date = min_date, max_date = max_date, limit = limit, offset = offset)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
+	data <- compact(data) # Remove NULL
+	# Now data[1] is the count
+
 	if(identical(data, "No records found.") | identical(data, "No records were found.")) {
 		NULL 
 	} else {
-	data_df <- lapply(data, function(x){ 
+	data_df <- lapply(data[[2]], function(x){ 
+	x$images <- NULL	 	
 	df <- data.frame(t(unlist(x)))
-	df$other <- NULL
+	# df$other <- NULL
 	df
 })
 	final_df <- data.frame(do.call(rbind.fill, data_df))
-	names(final_df)[grep("latitude", names(final_df))] <- "decimal_latitude"
-	names(final_df)[grep("longitude", names(final_df))] <- "decimal_longitude"
+	names(final_df)[grep("geojson.coord1", names(final_df))] <- "decimal_latitude"
+	names(final_df)[grep("geojson.coord2", names(final_df))] <- "decimal_longitude"
 
-	final_df$meta.other <- NULL
-	if(!georeferenced) {
-		final_df
-	} else {
-		subset(final_df, !is.na(decimal_latitude) & !is.na(decimal_longitude))
-	}
-
+	final_df
 }
 }	
 
