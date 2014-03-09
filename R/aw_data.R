@@ -25,8 +25,8 @@
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 #' data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 #' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
-#' # sandstone <- aw_data(habitat = "sandstone", limit = 5)
-#' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 5)
+#' # sandstone <- aw_data(genus = "Aphaenogaster", habitat = "sandstone")
+#' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 25)
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
@@ -47,11 +47,10 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	data <- fromJSON(content(results, "text"))
 	data <- z_compact(data) # Remove NULL
 	# Now data[1] is the count
-
 	if(identical(data$specimens$empty_set, "No records found.")) {
 		NULL 
 	} else {
-	data_df <- lapply(data[[2]], function(x){ 
+	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
 	df <- data.frame(t(unlist(x)))
 	# df$other <- NULL
