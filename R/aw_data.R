@@ -45,7 +45,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	data <- compact(data) # Remove NULL
+	data <- z_compact(data) # Remove NULL
 	# Now data[1] is the count
 
 	if(identical(data$specimens$empty_set, "No records found.")) {
