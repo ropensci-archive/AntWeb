@@ -15,10 +15,13 @@ aw_code <- function(occurrenceid = NULL) {
 	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(occurrenceId = occurrenceid)))
 	results <- GET(base_url, query = args)
-
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
+	if(identical(data$specimens$empty_set, "No records found.")) {
+		NULL 
+	} else {
 	data.frame(t(unlist(data[2])))
+}
 }
 # [BUG]
 # Need to coerce dates correctly.

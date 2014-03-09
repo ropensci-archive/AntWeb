@@ -3,9 +3,15 @@ context("Ant Data")
 
 test_that("We are able to retreive all ant data correctly", {
 	# This will also test that georeferencing works correctly
-	ad <- aw_data(genus = "acanthognathus", species = "brevicornis")
-	ad2 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
+	ad <- aw_data(genus = "acromyrmex")
+	ad2 <- aw_data(genus = "acromyrmex", min_elevation =  400)
 	expect_true((nrow(ad) - nrow(ad2)) > 0)
+
+	# # This will also test that georeferencing works correctly
+	# NOT WORKING. I don't think the flag works anymore
+	# ad <- aw_data(genus = "acromyrmex")
+	# ad2 <- aw_data(genus = "acromyrmex", georeferenced = TRUE, limit = 100)
+	# expect_true((nrow(ad) - nrow(ad2)) > 0)
 
 	expect_is(ad, "data.frame")
 	expect_error(aw_data())
@@ -15,7 +21,7 @@ context("Data by specimen id works correctly")
 
 test_that("Specimen collections work correctly", {
 	data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
-	expect_is(data_by_code, "list")
+	expect_is(data_by_code, "data.frame")
 	genus_list <- aw_unique(rank = "genus")
 	expect_is(genus_list, "data.frame")
 	expect_equal(ncol(genus_list), 1)

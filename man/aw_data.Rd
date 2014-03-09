@@ -3,8 +3,9 @@
 \title{Retrieve data from the AntWeb}
 \usage{
 aw_data(genus = NULL, species = NULL, scientific_name = NULL,
-  georeferenced = FALSE, type = NULL, habitat = NULL, min_date = NULL,
-  max_date = NULL, bbox = NULL, limit = NULL, offset = NULL)
+  georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL,
+  type = NULL, habitat = NULL, min_date = NULL, max_date = NULL,
+  bbox = NULL, limit = NULL, offset = NULL)
 }
 \arguments{
   \item{genus}{An ant genus name}
@@ -32,6 +33,10 @@ aw_data(genus = NULL, species = NULL, scientific_name = NULL,
 
   \item{max_date}{An upper date bound in the format
   \code{yyyy-mm-dd}}
+
+  \item{min_elevation}{A lower elevation bound}
+
+  \item{max_elevation}{An upper elevation bound}
 
   \item{limit}{A numeric value to limit number of records}
 
