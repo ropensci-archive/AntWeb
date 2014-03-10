@@ -12,6 +12,9 @@
 #' @examples \dontrun{
 #'  acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
 #'  aw_map(acanthognathus_df)
+#' # Or just plot data by habitat. So for e.g. using sandstone as a substrate
+#' sandstone <- aw_data(habitat = "sandstone")
+#' aw_map(sandstone)
 #'}
 aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.data = TRUE) {
 	decimal_latitude <- NULL
