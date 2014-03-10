@@ -5,7 +5,7 @@
 aw_data(genus = NULL, species = NULL, scientific_name = NULL,
   georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL,
   type = NULL, habitat = NULL, min_date = NULL, max_date = NULL,
-  bbox = NULL, limit = NULL, offset = NULL)
+  bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE)
 }
 \arguments{
   \item{genus}{An ant genus name}
@@ -42,6 +42,9 @@ aw_data(genus = NULL, species = NULL, scientific_name = NULL,
 
   \item{offset}{An offset best used with limit as a way to
   paginate records}
+
+  \item{quiet}{If true, any informative messages will be
+  suppressed}
 }
 \value{
 data.frame
@@ -54,8 +57,8 @@ any taxonomic rank or full species name.
 data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
-# sandstone <- aw_data(habitat = "sandstone", limit = 5)
-# data_genus_only <- aw_data(genus = "acanthognathus", limit = 5)
+# sandstone <- aw_data(genus = "Aphaenogaster", habitat = "sandstone")
+# data_genus_only <- aw_data(genus = "acanthognathus", limit = 25)
 # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully

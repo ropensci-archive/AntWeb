@@ -15,6 +15,7 @@
 #' @param  max_elevation An upper elevation bound
 #' @param  limit A numeric value to limit number of records
 #' @param  offset An offset best used with limit as a way to paginate records
+#' @param  quiet If true, any informative messages will be suppressed
 #' @export
 #' @keywords data download
 #' @importFrom rjson fromJSON
@@ -30,10 +31,12 @@
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
 
 
-	assert_that(!is.null(scientific_name) | !is.null(genus))
+	main_args <- z_compact(as.list(c(scientific_name, genus, type, habitat, bbox)))
+	assert_that(length(main_args) > 0)
+	# assert_that(!is.null(scientific_name) | !is.null(genus))
 	decimal_latitude <- NA
 	decimal_longitude <- NA
 	if(!is.null(scientific_name)) {
@@ -46,14 +49,23 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	data <- z_compact(data) # Remove NULL
-	# Now data[1] is the count
+	if(data$count > 1000) {
+		limit <- 1000
+		args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset, georeferenced = georeferenced)))
+		results <- GET(base_url, query = args)
+		data <- fromJSON(content(results, "text"))
+		data <- z_compact(data)
+		if(!quiet) message(sprintf("Query contains %s results. First 1000 retrieved. Use the offset argument to retrieve more \n", data$count))
+	}
+	
 	if(identical(data$specimens$empty_set, "No records found.")) {
 		NULL 
 	} else {
+
+	if(!quiet) message(sprintf("%s results available for query \n", data$count))
 	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
 	df <- data.frame(t(unlist(x)))
-	# df$other <- NULL
 	df
 })
 	final_df <- data.frame(do.call(rbind.fill, data_df))
@@ -63,11 +75,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	final_df
 }
 }	
-# [TODO]
-# This fails
-# sandstone <- aw_data(genus = "megalomyrmex", habitat = "sandstone", limit = 5)
-# Do I allow search without genus or scientific name?
-
+ 
 
 
 #' aw_unique
@@ -84,7 +92,6 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #' species_list <- aw_unique(rank = "species")
 #'}
 aw_unique <- function(rank = NULL, name = NULL) {
-
 	assert_that(!is.null(z_compact(c(rank, name))))
 	base_url <- "http://www.antweb.org/api/"
 	args <- z_compact(as.list(c(rank = rank, name = name)))
