@@ -30,13 +30,16 @@
 #' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 25)
 #' # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 #' # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
+#' # Search just using a bounding box
+#' # data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
+#' # Search by a elevation band
+#' # aw_data(min_elevation = 400, max_elevation = 500)
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
 
 
 	main_args <- z_compact(as.list(c(scientific_name, genus, type, habitat, bbox)))
 	assert_that(length(main_args) > 0)
-	# assert_that(!is.null(scientific_name) | !is.null(genus))
 	decimal_latitude <- NA
 	decimal_longitude <- NA
 	if(!is.null(scientific_name)) {
@@ -65,6 +68,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	if(!quiet) message(sprintf("%s results available for query \n", data$count))
 	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
+	# In a future fix, I should coerce the image data back to a df and add it here.
 	df <- data.frame(t(unlist(x)))
 	df
 })

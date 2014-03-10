@@ -3,7 +3,7 @@
 \title{Retrieve data from the AntWeb}
 \usage{
 aw_data(genus = NULL, species = NULL, scientific_name = NULL,
-  georeferenced = FALSE, min_elevation = NULL, max_elevation = NULL,
+  georeferenced = NULL, min_elevation = NULL, max_elevation = NULL,
   type = NULL, habitat = NULL, min_date = NULL, max_date = NULL,
   bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE)
 }
@@ -61,6 +61,10 @@ data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeference
 # data_genus_only <- aw_data(genus = "acanthognathus", limit = 25)
 # leaf_cutter_ants  <- aw_data(genus = "acromyrmex")
 # data  <- aw_data(genus = "Technomyrmex", bbox = '37.77,-122.46,37.76,-122.47')
+# Search just using a bounding box
+# data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
+# Search by a elevation band
+# aw_data(min_elevation = 400, max_elevation = 500)
 # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 }
 \keyword{data}
