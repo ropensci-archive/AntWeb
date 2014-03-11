@@ -64,7 +64,8 @@ data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeference
 # Search just using a bounding box
 # data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
 # Search by a elevation band
-# aw_data(min_elevation = 400, max_elevation = 500)
+# aw_data(min_elevation = 1500, max_elevation = 2000)
+# aw_data(min_date = '1980-01-01', max_date = '1981-01-01')
 # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 }
 \keyword{data}
