@@ -1,4 +1,5 @@
 S3method(print,antweb)
+export(aw_cbind)
 export(aw_code)
 export(aw_coords)
 export(aw_data)
