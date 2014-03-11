@@ -5,15 +5,14 @@ test_that("We are able to retreive all ant data correctly", {
 	# This will also test that georeferencing works correctly
 	ad <- aw_data(genus = "acromyrmex")
 	ad2 <- aw_data(genus = "acromyrmex", min_elevation =  400)
-	expect_true((nrow(ad) - nrow(ad2)) > 0)
+	expect_true((nrow(ad$data) - nrow(ad2$data)) > 0)
 
 	# # This will also test that georeferencing works correctly
-	# NOT WORKING. I don't think the flag works anymore
-	# ad <- aw_data(genus = "acromyrmex")
-	# ad2 <- aw_data(genus = "acromyrmex", georeferenced = TRUE, limit = 100)
-	# expect_true((nrow(ad) - nrow(ad2)) > 0)
+	x1 <- aw_data(min_date = '2014-01-01', max_date = '2014-03-01')
+	x2 <- aw_data(min_date = '2014-01-01', max_date = '2014-03-01', georeferenced = TRUE)
+	expect_true(x1$count > x2$count)
 
-	expect_is(ad, "data.frame")
+	expect_is(ad$data, "data.frame")
 	expect_error(aw_data())
 })
 
