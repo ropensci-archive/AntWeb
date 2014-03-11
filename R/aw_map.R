@@ -46,7 +46,7 @@ aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.
 	sty <- styleCat(prop = "scientific_name", val = unique(species_data$scientific_name), style.val = pal, fill.alpha = 1, alpha = 1, rad = 4, leg = "Scientific Name")
 	map <- leaflet(ee_geo, base.map="tls", style = sty, popup = "scientific_name", dest = dest, title = title, incl.data = incl.data) 
 	} else {
-	message("Dataset contains more than 30 unique species so a legend was not generated\n")	
+	message("\nDataset contains more than 30 unique species so a legend was not generated\n")	
 	map <- leaflet(ee_geo, base.map="tls", dest = dest, title = title, incl.data = incl.data) 		
 }
 	browseURL(map)
