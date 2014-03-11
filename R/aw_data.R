@@ -33,39 +33,53 @@
 #' # Search just using a bounding box
 #' # data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
 #' # Search by a elevation band
-#' # aw_data(min_elevation = 400, max_elevation = 500)
+#' # aw_data(min_elevation = 1500, max_elevation = 2000)
+#' # aw_data(min_date = '1980-01-01', max_date = '1981-01-01')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
 
-
+	# Check for minimum arguments to run a query
 	main_args <- z_compact(as.list(c(scientific_name, genus, type, habitat, bbox)))
-	assert_that(length(main_args) > 0)
+	date_args <- z_compact(as.list(c(min_date, max_date)))
+	elev_args <- z_compact(as.list(c(min_elevation, max_elevation)))
+	arg_lengths <- c(length(main_args), length(date_args), length(elev_args))
+
+	assert_that(any(arg_lengths) > 0)
 	decimal_latitude <- NA
 	decimal_longitude <- NA
 	if(!is.null(scientific_name)) {
 		genus <- strsplit(scientific_name, " ")[[1]][1]
 		species <- strsplit(scientific_name, " ")[[1]][2]
 	}
+
+	# This is a quick call with one result observation requested
+	# If all goes well and result set is not greater than 1k, all are retrieved
 	base_url <- "http://www.antweb.org/api/v2/"
-	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset, georeferenced = georeferenced)))
+	original_limit <- limit
+	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = 1, offset = offset, georeferenced = georeferenced)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	data <- z_compact(data) # Remove NULL
-	if(data$count > 1000) {
-		limit <- 1000
-		args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = limit, offset = offset, georeferenced = georeferenced)))
+
+
+	if(data$count > 1000 & is.null(limit)) {
+		args$limit <- 1000
 		results <- GET(base_url, query = args)
-		data <- fromJSON(content(results, "text"))
-		data <- z_compact(data)
 		if(!quiet) message(sprintf("Query contains %s results. First 1000 retrieved. Use the offset argument to retrieve more \n", data$count))
+	} else { 
+		args$limit <- original_limit
+		results <- GET(base_url, query = args)
 	}
 	
+		data <- fromJSON(content(results, "text"))
+		data <- z_compact(data)
+
 	if(identical(data$specimens$empty_set, "No records found.")) {
 		NULL 
 	} else {
 
-	if(!quiet) message(sprintf("%s results available for query \n", data$count))
+	if(!quiet) message(sprintf("%s results available for query. Downloading %s\n", data$count, args$limit))
 	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
 	# In a future fix, I should coerce the image data back to a df and add it here.
@@ -76,7 +90,11 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	names(final_df)[grep("geojson.coord1", names(final_df))] <- "decimal_latitude"
 	names(final_df)[grep("geojson.coord2", names(final_df))] <- "decimal_longitude"
 
-	final_df
+	final_results <- list(count = data$count, call = args, data = final_df)
+	# final_df
+	class(final_results) <- "antweb"
+	final_results
+
 }
 }	
  
