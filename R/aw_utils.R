@@ -11,3 +11,15 @@ cat(sprintf("[Offset]: %s \n", x$offset))
 cat(sprintf("[Dataset]: [%s x %s] \n[Data preview] :\n", nrow(x$data), ncol(x$data)))
 print(x$data[1:2, ])
 }
+
+
+#' @noRd
+pretty_lists <- function(x)
+{
+   for(key in names(x)){
+      value <- format(x[[key]])
+      if(value == "") next
+      cat(key, "=", value, "\n")
+   }
+   invisible(x)
+}
