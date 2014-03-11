@@ -17,5 +17,4 @@ Imports:
     plyr,
     assertthat,
     httr,
-    ecoengine,
     leafletR (>= 0.1-1)
