@@ -89,7 +89,9 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	final_df <- data.frame(do.call(rbind.fill, data_df))
 	names(final_df)[grep("geojson.coord1", names(final_df))] <- "decimal_latitude"
 	names(final_df)[grep("geojson.coord2", names(final_df))] <- "decimal_longitude"
-
+	# There seem to be extra field when searching for just a genus
+	final_df$decimalLatitude <- NULL
+	final_df$decimalLongitude <- NULL
 	final_results <- list(count = data$count, call = args, data = final_df)
 	# final_df
 	class(final_results) <- "antweb"
