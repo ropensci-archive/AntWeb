@@ -34,6 +34,8 @@
 #' # data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
 #' # Search by a elevation band
 #' # aw_data(min_elevation = 1500, max_elevation = 2000)
+#' # When you throw a really specimen rich band like below, you'll get a huge number of requests. Only the first 1000 records will download first. 
+#'	aw_data(min_elevation = 200, max_elevation = 400)
 #' # aw_data(min_date = '1980-01-01', max_date = '1981-01-01')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
