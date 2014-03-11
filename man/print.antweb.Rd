@@ -1,0 +1,15 @@
+\name{print.antweb}
+\alias{print.antweb}
+\title{Print a summary for an antweb object}
+\usage{
+\method{print}{antweb}(x, ...)
+}
+\arguments{
+  \item{x}{An object of class \code{antweb}}
+
+  \item{...}{additional arguments}
+}
+\description{
+Print a summary for an antweb object
+}
+
