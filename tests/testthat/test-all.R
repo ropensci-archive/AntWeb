@@ -12,6 +12,7 @@ test_that("We are able to retreive all ant data correctly", {
 	x2 <- aw_data(min_date = '2014-01-01', max_date = '2014-03-01', georeferenced = TRUE)
 	expect_true(x1$count > x2$count)
 
+	expect_is
 	expect_is(ad$data, "data.frame")
 	expect_error(aw_data())
 })
@@ -20,7 +21,7 @@ context("Data by specimen id works correctly")
 
 test_that("Specimen collections work correctly", {
 	data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
-	expect_is(data_by_code, "data.frame")
+	expect_is(data_by_code, "antweb")
 	genus_list <- aw_unique(rank = "genus")
 	expect_is(genus_list, "data.frame")
 	expect_equal(ncol(genus_list), 1)
@@ -52,7 +53,7 @@ test_that("Photos work correctly", {
 context("Testing the Leaflet maps")
 
 test_that("Leaflet maps and geoJSON work", {
-ant_data <- acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
+ant_data <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
 aw_map(ant_data, dest = ".")
 expect_true(file.exists("AntWeb_species_map"))
 expect_true(file.exists("temp.geojson"))
