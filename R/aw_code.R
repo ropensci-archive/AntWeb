@@ -2,7 +2,7 @@
 #'
 #' Retrieve data by specimen id
 #' @param occurrenceid A unique id in the AntWeb database identifying a particular specimen
-#' @param occurrenceid NEEDS A DESCRIPTION
+#' @param catalogNumber Specimen catalogue number
 #' @export
 #' @seealso \code{\link{aw_data}}
 #' @return list

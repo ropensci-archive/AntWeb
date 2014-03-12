@@ -2,11 +2,13 @@
 \alias{aw_code}
 \title{aw_code}
 \usage{
-aw_code(occurrenceid = NULL)
+aw_code(occurrenceid = NULL, catalogNumber = NULL)
 }
 \arguments{
   \item{occurrenceid}{A unique id in the AntWeb database
   identifying a particular specimen}
+
+  \item{catalogNumber}{Specimen catalogue number}
 }
 \value{
 list
