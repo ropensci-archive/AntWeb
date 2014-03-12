@@ -24,7 +24,7 @@
 #' @return data.frame
 #' @examples   
 #' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
-#' data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
+#' # data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 #' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 #' # sandstone <- aw_data(genus = "Aphaenogaster", habitat = "sandstone")
 #' # data_genus_only <- aw_data(genus = "acanthognathus", limit = 25)
@@ -34,8 +34,9 @@
 #' # data  <- aw_data(bbox = '37.77,-122.46,37.76,-122.47')
 #' # Search by a elevation band
 #' # aw_data(min_elevation = 1500, max_elevation = 2000)
-#' # When you throw a really specimen rich band like below, you'll get a huge number of requests. Only the first 1000 records will download first. 
-#'	aw_data(min_elevation = 200, max_elevation = 400)
+#' # When you throw a really specimen rich band like below, you'll get a huge number of requests. 
+#' # Only the first 1000 records will download first. 
+#' # aw_data(min_elevation = 200, max_elevation = 400)
 #' # aw_data(min_date = '1980-01-01', max_date = '1981-01-01')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
@@ -64,7 +65,6 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	data <- fromJSON(content(results, "text"))
 	data <- z_compact(data) # Remove NULL
 
-
 	if(data$count > 1000 & is.null(limit)) {
 		args$limit <- 1000
 		results <- GET(base_url, query = args)
@@ -81,7 +81,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 		NULL 
 	} else {
 
-	if(!quiet) message(sprintf("%s results available for query. Downloading %s\n", data$count, args$limit))
+	if(!quiet) message(sprintf("%s results available for query.", data$count))
 	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
 	# In a future fix, I should coerce the image data back to a df and add it here.
@@ -101,6 +101,27 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 }
 }	
  
+
+#' Download all aw_data available for any request
+#'
+#' This is a thin wrapper around aw_data
+#' @param ... All the same arguments that get passed to \code{aw_data}
+#' @export
+#' @keywords data download
+#' @seealso aw_data
+#' @examples \dontrun{
+#' crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
+#'}
+aw_data_all <- function(...) {
+	x <- aw_data(...)
+	bins <- seq(from = 0, to = x$count, by = 1000)
+	results <- llply(bins, function(x) {
+		aw_data(..., offset = x, quiet = TRUE)
+	}, .progress = "text")
+	
+	aw_cbind(results)
+} 
+
 
 
 #' aw_unique
