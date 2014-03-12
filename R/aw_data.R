@@ -119,7 +119,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #'}
 aw_unique <- function(rank = NULL, name = NULL) {
 	assert_that(!is.null(z_compact(c(rank, name))))
-	base_url <- "http://www.antweb.org/api/"
+	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(rank = rank, name = name)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
