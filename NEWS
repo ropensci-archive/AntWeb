@@ -1,3 +1,9 @@
+Version 0.6
+================
+* Migrated all functions to the new API
+* All functions now have a limit, allowing users to query large genera
+* Added more options for search (including elevation bands, date ranges, habitat, and type)
+
 
 Version: 0.5
 =============
