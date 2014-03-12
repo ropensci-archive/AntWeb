@@ -18,7 +18,6 @@ aw_coords <- function( coord = NULL, r = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	browser()
 
 	data_list <- lapply(data$specimens, function(z) {
 		 flatten <- LinearizeNestedList(z)
