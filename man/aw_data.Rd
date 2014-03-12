@@ -54,7 +54,7 @@ This function allows a user to query the AntWeb database by
 any taxonomic rank or full species name.
 }
 \examples{
-data <- aw_data(genus = "acanthognathus", species = "brevicornis")
+# data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 # data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 # sandstone <- aw_data(genus = "Aphaenogaster", habitat = "sandstone")

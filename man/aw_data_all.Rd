@@ -13,7 +13,7 @@ This is a thin wrapper around aw_data
 }
 \examples{
 \dontrun{
-crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
+# crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
 }
 }
 \seealso{

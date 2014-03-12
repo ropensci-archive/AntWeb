@@ -21,8 +21,8 @@ Get a list of unique names within any taxonomic rank
 \examples{
 \dontrun{
 subfamily_list <- aw_unique(rank = "subfamily")
-genus_list <- aw_unique(rank = "genus")
-species_list <- aw_unique(rank = "species")
+# genus_list <- aw_unique(rank = "genus")
+# species_list <- aw_unique(rank = "species")
 }
 }
 \seealso{

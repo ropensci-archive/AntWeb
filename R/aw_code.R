@@ -7,7 +7,7 @@
 #' @seealso \code{\link{aw_data}}
 #' @return list
 #' @examples 
-#' data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
+#' # data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
 aw_code <- function(occurrenceid = NULL, catalogNumber = NULL) {
 
 	# We need at least one identifier

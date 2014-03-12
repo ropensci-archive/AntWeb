@@ -23,7 +23,7 @@
 #' @import httr
 #' @return data.frame
 #' @examples   
-#' data <- aw_data(genus = "acanthognathus", species = "brevicornis")
+#' # data <- aw_data(genus = "acanthognathus", species = "brevicornis")
 #' # data3 <- aw_data(genus = "acanthognathus", species = "brevicornis", georeferenced = TRUE)
 #' # data2 <- aw_data(scientific_name = "acanthognathus brevicornis")
 #' # sandstone <- aw_data(genus = "Aphaenogaster", habitat = "sandstone")
@@ -107,10 +107,11 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #' This is a thin wrapper around aw_data
 #' @param ... All the same arguments that get passed to \code{aw_data}
 #' @export
+#' @importFrom plyr llply
 #' @keywords data download
 #' @seealso aw_data
 #' @examples \dontrun{
-#' crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
+#' # crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
 #'}
 aw_data_all <- function(...) {
 	x <- aw_data(..., quiet = TRUE)
@@ -135,8 +136,8 @@ aw_data_all <- function(...) {
 #' @return data.frame
 #' @examples  \dontrun{
 #' subfamily_list <- aw_unique(rank = "subfamily")
-#' genus_list <- aw_unique(rank = "genus")
-#' species_list <- aw_unique(rank = "species")
+#' # genus_list <- aw_unique(rank = "genus")
+#' # species_list <- aw_unique(rank = "species")
 #'}
 aw_unique <- function(rank = NULL, name = NULL) {
 	assert_that(!is.null(z_compact(c(rank, name))))

@@ -9,7 +9,7 @@
 #' @importFrom plyr rbind.fill
 #' @return \code{\link{aw_data}}
 #' @examples  
-#' data_by_loc <- aw_coords(coord = "37.76,-122.45", r = 2)
+#' # data_by_loc <- aw_coords(coord = "37.76,-122.45", r = 2)
 aw_coords <- function( coord = NULL, r = NULL) {
 	assert_that(!is.null(coord) & is.character(coord))
 
