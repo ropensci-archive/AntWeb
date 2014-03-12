@@ -34,7 +34,7 @@ test_that("Specimen collections work correctly", {
 
 test_that("We can correctly retrieve data by coordinates", {
 data_by_loc <- aw_coords(coord = "37.76,-122.45", r = 2)
-expect_is(data_by_loc, "data.frame")
+expect_is(data_by_loc$data, "data.frame")
 expect_error(aw_coords())
 })
 
@@ -42,10 +42,10 @@ context("Photos")
 
 test_that("Photos work correctly", {
 	z <- aw_images(since = 5)
-	z1 <- aw_images(since = 5, type = "d")
+	z1 <- aw_images(since = 5, img_type = "d")
 	expect_is(z, "data.frame")
 	expect_is(z1, "data.frame")
-	expect_equal(unique(z1$type), "d")
+	expect_equal(unique(z1$img_type), "d")
 })
 
 
