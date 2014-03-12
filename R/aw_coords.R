@@ -13,16 +13,17 @@
 aw_coords <- function( coord = NULL, r = NULL) {
 	assert_that(!is.null(coord) & is.character(coord))
 
-	base_url <- "http://www.antweb.org/api/"
+	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(coord = coord, r = r)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
-	data_list <- lapply(data, function(z) {
-		specimen_by_loc <- data.frame(t(unlist(z$meta)))
+	data_list <- lapply(data$specimens, function(z) {
+		specimen_by_loc <- data.frame(t(unlist(z)))
 	})
 	data_df <- do.call(rbind.fill, data_list)
-	data_df$other <- NULL
-	data_df
+	final_results <- list(count = data$count, call = args, data = data_df)
+	class(final_results) <- "antweb"
+	final_results
 }
 
