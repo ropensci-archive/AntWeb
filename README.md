@@ -41,14 +41,13 @@ install_github("ropensci/AntWeb")
 | `aw_code` | Search for a specimen by record number   |  `aw_code(occurrenceid = "antweb:inb0003695883") ` |
 | `aw_map` | Map georeferenced data | `adf <- aw_data(genus = "acanthognathus", georeferenced = TRUE)`<br>`aw_map(adf)` |
 
-
 ## Citation
 
 ```coffee
 To cite package ‘AntWeb’ in publications use:
 
   'Karthik Ram' (2014). AntWeb: programmatic interface
-  to the AntWeb. R package version 0.5.
+  to the AntWeb. R package version 0.6.
   https://github.com/ropensci/AntWeb
 
 A BibTeX entry for LaTeX users is
@@ -57,7 +56,7 @@ A BibTeX entry for LaTeX users is
     title = {AntWeb: programmatic interface to the AntWeb},
     author = {'Karthik Ram'},
     year = {2014},
-    note = {R package version 0.5},
+    note = {R package version 0.6},
     url = {https://github.com/ropensci/AntWeb},
   }
 
