@@ -38,6 +38,7 @@ print(x$data[1:2, ])
 #' @param results A list of objects of class \code{antweb}
 #' @export
 #' @importFrom assertthat assert_that
+#' @importFrom plyr ldply
 #' @examples \dontrun{
 #' x1 <- aw_data(genus = "crematogaster", georeferenced = TRUE)
 #' x2 <- aw_data(genus = "crematogaster", georeferenced = TRUE, offset = 1000)
@@ -47,13 +48,16 @@ aw_cbind <- function(results) {
 	assert_that(class(results) == "list")
     # This bit comibnes all the arguments
     # -----------------------------------
-    res2 <- ldply(results, function(x) {
+    res2 <- lapply(results, function(x) {
         y <- x[-which(names(x) == "data")]
         data.frame(LinearizeNestedList(y))
     })
-
-    page_loc <- which(names(res2) == "call.offset")
-    if(nrow(res2[!duplicated(res2[, -page_loc]), ]) == 1) {
+    res2 <- lapply(res2, function(x) {
+        x$call.offset = NULL
+        x
+        })
+    res2 <- do.call(rbind, res2)
+    if(nrow(res2[!duplicated(res2), ]) == 1) {
         data <- ldply(results, function(x) x[[which(names(x) == "data")]])
         res <- results[[1]]
         res$data <- data
