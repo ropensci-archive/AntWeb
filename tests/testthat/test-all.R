@@ -38,6 +38,17 @@ expect_is(data_by_loc$data, "data.frame")
 expect_error(aw_coords())
 })
 
+context("Combining results")
+
+test_that("we can combine results correctly", {
+x1 <- aw_data(genus = "crematogaster", georeferenced = TRUE)
+x2 <- aw_data(genus = "crematogaster", georeferenced = TRUE, offset = 1000)
+x12 <- aw_cbind(list(x1, x2))
+expect_equal(nrow(x1$data), 1000)
+expect_equal(nrow(x2$data), 1000)
+expect_equal(nrow(x12$data), 2000)
+})
+
 context("Photos")
 
 test_that("Photos work correctly", {
