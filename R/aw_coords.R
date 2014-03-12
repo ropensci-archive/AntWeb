@@ -18,12 +18,16 @@ aw_coords <- function( coord = NULL, r = NULL) {
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
+	browser()
+
 	data_list <- lapply(data$specimens, function(z) {
-		specimen_by_loc <- data.frame(t(unlist(z)))
+		 flatten <- LinearizeNestedList(z)
+		 specimens_by_loc <- data.frame(t(unlist(flatten)))
 	})
+
+
 	data_df <- do.call(rbind.fill, data_list)
 	final_results <- list(count = data$count, call = args, data = data_df)
 	class(final_results) <- "antweb"
 	final_results
 }
-
