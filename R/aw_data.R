@@ -95,7 +95,6 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	final_df$decimalLatitude <- NULL
 	final_df$decimalLongitude <- NULL
 	final_results <- list(count = data$count, call = args, data = final_df)
-	# final_df
 	class(final_results) <- "antweb"
 	final_results
 
