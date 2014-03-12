@@ -1,4 +1,4 @@
-Version 0.6
+Version 0.6.1
 ================
 * Migrated all functions to the new API
 * All functions now have a limit, allowing users to query large genera
