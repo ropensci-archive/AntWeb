@@ -2,18 +2,20 @@
 #'
 #' Retrieve data by specimen id
 #' @param occurrenceid A unique id in the AntWeb database identifying a particular specimen
+#' @param occurrenceid NEEDS A DESCRIPTION
 #' @export
 #' @seealso \code{\link{aw_data}}
 #' @return list
 #' @examples 
 #' data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
-aw_code <- function(occurrenceid = NULL) {
+aw_code <- function(occurrenceid = NULL, catalogNumber = NULL) {
 
-	assert_that(!is.null(occurrenceid) & is.character(occurrenceid))
+	# We need at least one identifier
+	assert_that(!is.null(occurrenceid) | !is.null(catalogNumber))
 
 	occurrenceid <- tolower(occurrenceid)
 	base_url <- "http://www.antweb.org/api/v2"
-	args <- z_compact(as.list(c(occurrenceId = occurrenceid)))
+	args <- z_compact(as.list(c(occurrenceId = occurrenceid, catalogNumber = catalogNumber)))
 	results <- GET(base_url, query = args)
 	stop_for_status(results)
 	data <- fromJSON(content(results, "text"))
@@ -28,3 +30,4 @@ aw_code <- function(occurrenceid = NULL) {
 	final_results
 }
 }
+ 
