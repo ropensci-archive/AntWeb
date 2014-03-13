@@ -15,8 +15,6 @@ __Stable version__
 
 ```coffee
 install.packages("AntWeb", dependencies = TRUE)
-# due to a small bug, maps does not work in this version. 
-# Use the development version until version 0.6 becomes available on CRAN
 ```
 
 __Development version__  
