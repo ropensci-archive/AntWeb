@@ -15,6 +15,7 @@ __Stable version__
 
 ```coffee
 install.packages("AntWeb", dependencies = TRUE)
+# version 0.6
 ```
 
 __Development version__  
