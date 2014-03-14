@@ -116,12 +116,14 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 aw_data_all <- function(...) {
 	x <- aw_data(..., quiet = TRUE)
 	message(sprintf("Downloading %s results. Be patient\n", x$count))
+	if(!is.null(x$count)) {
 	bins <- seq(from = 0, to = x$count, by = 1000)
 	results <- llply(bins, function(x) {
 		aw_data(..., offset = x, quiet = TRUE)
 	}, .progress = "text")
 
 	aw_cbind(results)
+}
 } 
 
 
