@@ -17,7 +17,7 @@ pretty_lists <- function(x)
 
 #' Print a summary for an antweb object
 #' @method print antweb
-#' @S3method print antweb
+#' @export
 #' @param x An object of class \code{antweb}
 #'   
 #' @param ... additional arguments
