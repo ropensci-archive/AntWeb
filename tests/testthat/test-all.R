@@ -20,7 +20,7 @@ test_that("We are able to retreive all ant data correctly", {
 context("Data by specimen id works correctly")
 
 test_that("Specimen collections work correctly", {
-	data_by_code <- aw_code(occurrenceid = "antweb:inb0003695883") 
+	data_by_code <- aw_code(occurrenceid = "CAS:ANTWEB:alas188691") 
 	expect_is(data_by_code, "antweb")
 	genus_list <- aw_unique(rank = "genus")
 	expect_is(genus_list, "data.frame")
