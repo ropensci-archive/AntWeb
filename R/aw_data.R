@@ -94,6 +94,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	# There seem to be extra field when searching for just a genus
 	final_df$decimalLatitude <- NULL
 	final_df$decimalLongitude <- NULL
+	final_df$minimumElevationInMeters <- as.numeric(final_df$minimumElevationInMeters)
 	final_results <- list(count = data$count, call = args, data = final_df)
 	class(final_results) <- "antweb"
 	final_results
