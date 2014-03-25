@@ -23,7 +23,7 @@ aw_map <- function(aw_obj, dest = tempdir(), title = "AntWeb species map", incl.
 	assert_that(identical(class(aw_obj), "antweb"))
 	aw_obj <- aw_obj$data
 	aw_obj <- subset(aw_obj, !is.na(decimal_latitude) & !is.na(decimal_longitude))
-	assert_that(nrow(aw_obj) > 1)
+	assert_that(nrow(aw_obj) >= 1)
 
 
 	dest <- ifelse(is.null(dest), tempdir(), dest)
