@@ -17,7 +17,7 @@ aw_code <- function(occurrenceid = NULL, catalogNumber = NULL) {
 	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(occurrenceId = occurrenceid, catalogNumber = catalogNumber)))
 	results <- GET(base_url, query = args)
-	stop_for_status(results)
+	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	if(identical(data$specimens$empty_set, "No records found.")) {
 		NULL 

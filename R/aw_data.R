@@ -62,7 +62,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	original_limit <- limit
 	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = 1, offset = offset, georeferenced = georeferenced)))
 	results <- GET(base_url, query = args)
-	stop_for_status(results)
+	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	data <- z_compact(data) # Remove NULL
 
@@ -149,7 +149,7 @@ aw_unique <- function(rank = NULL, name = NULL) {
 	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(rank = rank, name = name)))
 	results <- GET(base_url, query = args)
-	stop_for_status(results)
+	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	data.frame(do.call(rbind, data))
 }

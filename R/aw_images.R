@@ -1,4 +1,4 @@
-
+.,
 #' aw_images
 #'
 #' Download ant images based on time elapsed and/or type.
@@ -15,7 +15,7 @@ aw_images <- function(since = NULL, img_type = NULL) {
 	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(since = since, img = img, img_type = img_type)))
 	results <- GET(base_url, query = args)
-	stop_for_status(results)
+	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 
 	data_list <- lapply(data, function(z) {

@@ -16,7 +16,7 @@ aw_coords <- function( coord = NULL, r = NULL) {
 	base_url <- "http://www.antweb.org/api/v2"
 	args <- z_compact(as.list(c(coord = coord, r = r)))
 	results <- GET(base_url, query = args)
-	stop_for_status(results)
+	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 
 	data_list <- lapply(data$specimens, function(z) {
