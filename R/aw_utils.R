@@ -67,8 +67,9 @@ aw_cbind <- function(results) {
     }
 
 }
-
-
+# [TODO]
+# Should provide a way to combine results from aw_code()
+# need to remove the code before comparing, then concat all codes and add those back.
 
 
 #' @noRd
