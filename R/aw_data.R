@@ -6,7 +6,8 @@
 #' @param  species a species name
 #' @param  scientific_name An easier way to pass the Genus and species name together, especially when the data are derived from other packages.
 #' @param  georeferenced Default is \code{FALSE}. Set to \code{TRUE} to return only data with lat/long information. Note that this filtering takes place on the client-side, not server side.
-#' @param  bbox A lat long bounding box. Format is \code{lat,long,lat,long}
+#' @param  bbox A lat long bounding box. Format is \code{lat,long,lat,long}. Use this website: http://boundingbox.klokantech.com/ to quickly grab a bbox (set format on bottom left to csv and be sure to switch the order from long, lat, long, lat to lat, long, lat, long)
+#' Just set the format on the bottom left to CSV.
 #' @param  type A holotype
 #' @param  habitat A fuzzy search by any habitat
 #' @param  min_date A lower date bound in the format \code{yyyy-mm-dd}
@@ -107,6 +108,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #'
 #' This is a thin wrapper around aw_data
 #' @param ... All the same arguments that get passed to \code{aw_data}
+#' @param progress Default is on and set to \code{text}. Set to \code{none} to suppress
 #' @export
 #' @importFrom plyr llply
 #' @keywords data download
@@ -114,14 +116,14 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 #' @examples \dontrun{
 #' # crem <- aw_data_all(genus = "crematogaster", georeferenced = TRUE)
 #'}
-aw_data_all <- function(...) {
+aw_data_all <- function(..., progress = 'text') {
 	x <- aw_data(..., quiet = TRUE)
 	message(sprintf("Downloading %s results. Be patient\n", x$count))
 	if(!is.null(x$count)) {
 	bins <- seq(from = 0, to = x$count, by = 1000)
 	results <- llply(bins, function(x) {
 		aw_data(..., offset = x, quiet = TRUE)
-	}, .progress = "text")
+	}, .progress = progress)
 
 	aw_cbind(results)
 }
