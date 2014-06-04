@@ -1,4 +1,3 @@
-.,
 #' aw_images
 #'
 #' Download ant images based on time elapsed and/or type.
