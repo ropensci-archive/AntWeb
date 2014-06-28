@@ -3,6 +3,10 @@ z_compact <- function(l) Filter(Negate(is.null), l)
 
 
 #' @noRd
+aw_base_url <- function() {
+    "http://www.antweb.org/api/v2/"
+}
+#' @noRd
 #' keyword Internal
 pretty_lists <- function(x)
 {
