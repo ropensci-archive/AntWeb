@@ -145,12 +145,13 @@ aw_data_all <- function(..., progress = 'text') {
 #' # species_list <- aw_unique(rank = "species")
 #'}
 aw_unique <- function(rank = NULL, name = NULL) {
-	assert_that(!is.null(z_compact(c(rank, name))))
-	base_url <- "http://www.antweb.org/api/v2"
-	args <- z_compact(as.list(c(rank = rank, name = name)))
-	results <- GET(base_url, query = args)
-	warn_for_status(results)
-	data <- fromJSON(content(results, "text"))
-	data.frame(do.call(rbind, data))
+	# assert_that(!is.null(z_compact(c(rank, name))))
+	# base_url <- "http://www.antweb.org/api/v2"
+	# args <- z_compact(as.list(c(rank = rank, name = name)))
+	# results <- GET(base_url, query = args)
+	# warn_for_status(results)
+	# data <- fromJSON(content(results, "text"))
+	# data.frame(do.call(rbind, data))
+	message("Function deprecated. Use aw_distinct instead. Or maybe not. Might fold in aw_distnct here.")
 }
 
