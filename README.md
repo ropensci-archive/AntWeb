@@ -1,5 +1,5 @@
 # AntWeb
-![](https://travis-ci.org/ropensci/AntWeb.png?branch=master)
+![travis](https://travis-ci.org/ropensci/AntWeb.png?branch=master)
 
 [__AntWeb__](http://www.antweb.org/) is a repository of ant specimen records maintained by the [California Academy of Sciences](http://www.calacademy.org/). From the website's description:
 > AntWeb is the world's largest online database of images, specimen records, and natural history information on ants. It is community driven and open to contribution from anyone with specimen records, natural history comments, or images.
@@ -66,6 +66,6 @@ Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb
 
 ---
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
  
