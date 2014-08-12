@@ -1,3 +1,9 @@
+Version 0.6.7
+==============
+* Fixed bug with maps (stringsasFactors be damned)
+* 
+
+
 Version 0.6.1
 ================
 * Migrated all functions to the new API
