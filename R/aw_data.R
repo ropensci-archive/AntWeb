@@ -86,7 +86,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	data_df <- lapply(data$specimens, function(x){ 
 	x$images <- NULL	 	
 	# In a future fix, I should coerce the image data back to a df and add it here.
-	df <- data.frame(t(unlist(x)))
+	df <- data.frame(t(unlist(x)), stringsAsFactors=FALSE)
 	df
 })
 	final_df <- data.frame(do.call(rbind.fill, data_df))
