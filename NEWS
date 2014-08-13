@@ -1,7 +1,7 @@
 Version 0.7
 ==============
 * Fixed bug with maps (stringsasFactors be damned)
-* 
+* Package now supports additional search parameters including Country, Type, bounding box (bbox), min/max elevation, min/max date (of collection), limits and offsets
 
 
 Version 0.6.1
