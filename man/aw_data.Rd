@@ -5,8 +5,9 @@
 \usage{
 aw_data(genus = NULL, species = NULL, scientific_name = NULL,
   georeferenced = NULL, min_elevation = NULL, max_elevation = NULL,
-  type = NULL, habitat = NULL, min_date = NULL, max_date = NULL,
-  bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE)
+  type = NULL, habitat = NULL, country = NULL, min_date = NULL,
+  max_date = NULL, bbox = NULL, limit = NULL, offset = NULL,
+  quiet = FALSE)
 }
 \arguments{
 \item{genus}{An ant genus name}
@@ -23,6 +24,8 @@ Just set the format on the bottom left to CSV.}
 \item{type}{A holotype}
 
 \item{habitat}{A fuzzy search by any habitat}
+
+\item{country}{A country name}
 
 \item{min_date}{A lower date bound in the format \code{yyyy-mm-dd}}
 

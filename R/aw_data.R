@@ -10,6 +10,7 @@
 #' Just set the format on the bottom left to CSV.
 #' @param  type A holotype
 #' @param  habitat A fuzzy search by any habitat
+#' @param  country A country name
 #' @param  min_date A lower date bound in the format \code{yyyy-mm-dd}
 #' @param  max_date An upper date bound in the format \code{yyyy-mm-dd}
 #' @param  min_elevation A lower elevation bound
@@ -40,7 +41,7 @@
 #' # aw_data(min_elevation = 200, max_elevation = 400)
 #' # aw_data(min_date = '1980-01-01', max_date = '1981-01-01')
 #' # fail <- aw_data(scientific_name = "auberti levithorax") # This should fail gracefully
-aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
+aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, country = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
 
 	# Check for minimum arguments to run a query
 	main_args <- z_compact(as.list(c(scientific_name, genus, type, habitat, bbox)))
@@ -60,7 +61,7 @@ aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georef
 	# If all goes well and result set is not greater than 1k, all are retrieved
 	base_url <- "http://www.antweb.org/api/v2/"
 	original_limit <- limit
-	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, type = type, min_date = min_date, max_date = max_date, limit = 1, offset = offset, georeferenced = georeferenced)))
+	args <- z_compact(as.list(c(genus = genus, species = species, bbox = bbox, min_elevation = min_elevation, max_elevation = max_elevation, habitat = habitat, country = country, type = type, min_date = min_date, max_date = max_date, limit = 1, offset = offset, georeferenced = georeferenced)))
 	results <- GET(base_url, query = args)
 	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
