@@ -27,7 +27,7 @@ __Development version__
 # unlike most packages, devtools requires additional non-R dependencies depending on your OS. 
 # See → https://github.com/ropensci/rOpenSci/wiki/Installing-devtools
 library(devtools)
-install_github("ropensci/AntWeb")
+install_github("ropensci/AntWeb", ref = "dev")
 ```
 
 ## Quick usage guide
