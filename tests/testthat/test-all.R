@@ -15,6 +15,9 @@ test_that("We are able to retreive all ant data correctly", {
 	expect_is
 	expect_is(ad$data, "data.frame")
 	expect_error(aw_data())
+
+	acd <- aw_data(genus = "Platythyrea", country = "Madagascar", limit = 20)
+	expect_identical(unique(acd$data$country), "Madagascar")
 })
 
 context("Data by specimen id works correctly")
