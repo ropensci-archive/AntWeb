@@ -18,6 +18,7 @@ Retrieve data by specimen id
 }
 \examples{
 # data_by_code <- aw_code(occurrenceid = "CAS:ANTWEB:alas188691")
+# data_by_code <- aw_code(catalognumber="inb0003695883")
 }
 \seealso{
 \code{\link{aw_data}}
