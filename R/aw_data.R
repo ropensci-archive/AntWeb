@@ -21,6 +21,7 @@
 #' @export
 #' @keywords data download
 #' @importFrom rjson fromJSON
+#' @importFrom plyr rbind.fill
 #' @importFrom assertthat assert_that
 #' @import httr
 #' @return data.frame
