@@ -32,7 +32,7 @@ aw_distinct <- function(rank = "genus",
 	warn_for_status(results)
 	data <- fromJSON(content(results, "text"))
 	results <- data.frame(unlist(data), stringsAsFactors = FALSE)
-	results <- data.frame(results[-(1:4), ])
+	results <- data.frame(results[-(1:3), ])
 	names(results) <- substitute(rank)
 	names(results) <- rank
 	final_results <- list(count = data$count, call = main_args, data = results)
