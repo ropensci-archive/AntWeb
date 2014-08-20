@@ -47,7 +47,7 @@ install_github("ropensci/AntWeb", ref = "dev")
 To cite package ‘AntWeb’ in publications use:
 
   'Karthik Ram' (2014). AntWeb: programmatic interface
-  to the AntWeb. R package version 0.7.
+  to the AntWeb. R package version 0.7.2.99.
   https://github.com/ropensci/AntWeb
 
 A BibTeX entry for LaTeX users is
@@ -56,7 +56,7 @@ A BibTeX entry for LaTeX users is
     title = {AntWeb: programmatic interface to the AntWeb},
     author = {'Karthik Ram'},
     year = {2014},
-    note = {R package version 0.7},
+    note = {R package version 0.7.2.99},
     url = {https://github.com/ropensci/AntWeb},
   }
 
