@@ -24,7 +24,7 @@ aw_images <- function(since = NULL, img_type = NULL) {
 			photo_data <- lapply(photo_list, function(il) {
 				imgg <- list()
 				for(i in 1:length(il)) {
-					imgg[[i]] <-  data.frame(t(unlist(il[[i]]$img)))
+					imgg[[i]] <-  data.frame(t(unlist(il[[i]]$img)), stringsAsFactors = FALSE)
 					imgg[[i]]$img_type <- unlist(names(il[i]))
 				}
 
