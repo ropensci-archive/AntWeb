@@ -45,7 +45,7 @@
 aw_data <- function(genus = NULL, species = NULL, scientific_name = NULL, georeferenced = NULL, min_elevation = NULL, max_elevation = NULL, type = NULL, habitat = NULL, country = NULL, min_date = NULL, max_date = NULL, bbox = NULL, limit = NULL, offset = NULL, quiet = FALSE) {
 
 	# Check for minimum arguments to run a query
-	main_args <- z_compact(as.list(c(scientific_name, genus, type, habitat, bbox)))
+	main_args <- z_compact(as.list(c(scientific_name, genus, country, type, habitat, bbox)))
 	date_args <- z_compact(as.list(c(min_date, max_date)))
 	elev_args <- z_compact(as.list(c(min_elevation, max_elevation)))
 	arg_lengths <- c(length(main_args), length(date_args), length(elev_args))
