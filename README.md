@@ -2,7 +2,8 @@
 Linux: ![travis](https://travis-ci.org/ropensci/AntWeb.png?branch=master)  
 Windows: [![Build status](https://ci.appveyor.com/api/projects/status/2oqv3oj1avrg71c7)](https://ci.appveyor.com/project/karthik/antweb)  
 
-[__AntWeb__](http://www.antweb.org/) is a repository of ant specimen records maintained by the [California Academy of Sciences](http://www.calacademy.org/). From the website's description:
+[__AntWeb__](http://www.antweb.org/) is a repository of ant specimen records maintained by the [California Academy of Sciences](http://www.calacademy.org/). From the website's description:  
+
 > AntWeb is the world's largest online database of images, specimen records, and natural history information on ants. It is community driven and open to contribution from anyone with specimen records, natural history comments, or images.
 
 __Resources__  
@@ -43,7 +44,7 @@ install_github("ropensci/AntWeb", ref = "dev")
 
 ## Citation
 
-```coffee
+```r
 To cite package ‘AntWeb’ in publications use:
 
   'Karthik Ram' (2014). AntWeb: programmatic interface
@@ -59,8 +60,12 @@ A BibTeX entry for LaTeX users is
     note = {R package version 0.7.2.99},
     url = {https://github.com/ropensci/AntWeb},
   }
-
 ```
+
+  
+This package is part of a richer suite called [SPOCC Species Occurrence Data](https://github.com/ropensci/spocc), along with several other packages, that provide access to occurrence records from multiple databases. We recommend using SPOCC as the primary R interface to AntWeb unless your needs are limited to this single source.    
+
+
 ## Questions, bugs, and suggestions
 
 Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb/issues/new) or send in a pull request.
