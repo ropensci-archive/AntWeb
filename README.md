@@ -74,6 +74,6 @@ Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb
 
 ---
 
-[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
  
