@@ -1,10 +1,6 @@
-language: c
-script: "./travis-tool.sh run_tests"
-before_script:
-- curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-- chmod 755 ./travis-tool.sh
-- "./travis-tool.sh bootstrap"
-- "./travis-tool.sh install_deps - ./travis-tool.sh install_r rjson lubridate leafletR"
+language: r
+sudo: false
+cache: packages
 notifications:
   slack:
     secure: RVq8x5gkUyJuSyLFxevVEUK4zcgawFVbhsAJkJqDdqDx9RBNMaVuHRLdtjMVg1+rGBw73OWMLqw9RQ/2hwOPvGgBKEveB/K46BfP+t7xGoL0EctzSPFgzMwtHsgc8kFKIa1+kMFo0ZzOEcX+U8VG1YQmj8TbrPoSObZRJJoeZ0Y=
