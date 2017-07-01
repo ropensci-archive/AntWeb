@@ -1,6 +1,6 @@
 # AntWeb
-Linux: ![travis](https://travis-ci.org/ropensci/AntWeb.png?branch=master)  
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/2oqv3oj1avrg71c7)](https://ci.appveyor.com/project/karthik/antweb)  
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+![CRAN/GitHub 0.7_/_0.7.4.99](https://img.shields.io/badge/CRAN/GitHub-0.7_/_0.7.4.99-blue.svg) 
 
 [__AntWeb__](http://www.antweb.org/) is a repository of ant specimen records maintained by the [California Academy of Sciences](http://www.calacademy.org/). From the website's description:  
 
@@ -11,7 +11,14 @@ __Resources__
 * [AntWeb API](http://www.antweb.org/api/)
 * [API version 2](http://www.antweb.org/api/v2/)
 
-## Installing the package
+## Package Status and Installation
+
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/antweb?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/antweb)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/antweb.svg?branch=master)](https://travis-ci.org/)
+ [![codecov](https://codecov.io/gh/RMHogervorst/antweb/branch/master/graph/badge.svg)](https://codecov.io/gh/RMHogervorst/antweb)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/antweb?color=blue)](https://github.com/metacran/cranlogs.app)
+
+__Installation Instructions__
 
 __Stable version__  
 
@@ -31,7 +38,7 @@ library(devtools)
 install_github("ropensci/AntWeb", ref = "dev")
 ```
 
-## Quick usage guide
+## Usage
 
 | Function name | Description | Example | 
 | ------------- | ----------- | ------- |
@@ -68,11 +75,17 @@ This package is part of a richer suite called [SPOCC Species Occurrence Data](ht
 
 ---
 
-## Questions, bugs, and suggestions
+### Questions, bugs, and suggestions
 
 Please file any bugs or questions as [issues](https://github.com/ropensci/AntWeb/issues/new) or send in a pull request.
 
 ---
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
 
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
