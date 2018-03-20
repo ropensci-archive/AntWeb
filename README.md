@@ -16,7 +16,7 @@ __Resources__
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/antweb?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/antweb)
 [![Travis-CI Build Status](https://travis-ci.org/ropensci/antweb.svg?branch=master)](https://travis-ci.org/)
  [![codecov](https://codecov.io/gh/RMHogervorst/antweb/branch/master/graph/badge.svg)](https://codecov.io/gh/RMHogervorst/antweb)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/antweb?color=blue)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/AntWeb?color=blue)](https://github.com/metacran/cranlogs.app)
 
 __Installation Instructions__
 
