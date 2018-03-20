@@ -3,3 +3,4 @@ zzz.R
 dev.R
 Makefile
 appveyor.yml
+^CONDUCT\.md$

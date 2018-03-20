@@ -18,3 +18,5 @@ Imports:
     assertthat,
     httr,
     leafletR (>= 0.1-1)
+RoxygenNote: 6.0.1.9000
+Encoding: UTF-8

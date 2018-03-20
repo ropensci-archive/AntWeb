@@ -9,6 +9,7 @@
 #' @export
 #' @keywords map
 #' @import leafletR
+#' @importFrom utils browseURL
 #' @examples \dontrun{
 #'  acanthognathus_df <- aw_data(genus = "acanthognathus", georeferenced = TRUE)
 #'  aw_map(acanthognathus_df)
