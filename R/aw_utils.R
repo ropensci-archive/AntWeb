@@ -7,7 +7,7 @@ aw_base_url <- function() {
     "http://www.antweb.org/api/v2/"
 }
 #' @noRd
-#' keyword Internal
+#' @keywords Internal
 pretty_lists <- function(x)
 {
    for(key in names(x)){
