@@ -5,7 +5,7 @@ Title: programmatic interface to the AntWeb
 Description: A complete programmatic interface to the AntWeb database from the
     California Academy of Sciences.
 Version: 0.7.4.99
-Authors@R: 'Karthik Ram <karthik.ram@gmail.com> [aut, cre]'
+Authors@R: person("Karthik", "Ram", role = c("aut", "cre"), email = "karthik.ram@gmail.com", comment = c(ORCID = "0000-0002-0233-1757"))
 Depends:
     R (>= 3.0.1)
 License: CC0
